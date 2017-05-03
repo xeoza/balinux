@@ -1,0 +1,15 @@
+[Unit]
+Description=LoadaverageDaemon
+
+[Service]
+Type=forking
+PIDFile=/tmp/monitor/loadaverage.pid
+
+User=monitor
+Group=monitor
+
+ExecStart=/home/monitor/scripts/loadaverage.sh
+ExecReload=/home/monitor/scripts/loadaverage.sh --restart
+
+[Install]
+WantedBy=multi-user.target

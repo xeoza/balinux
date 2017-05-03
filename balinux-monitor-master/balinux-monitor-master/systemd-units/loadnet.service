@@ -1,0 +1,15 @@
+[Unit]
+Description=LoadnetDaemon
+
+[Service]
+Type=forking
+PIDFile=/tmp/monitor/loadnet.pid
+
+User=monitor
+Group=monitor
+
+ExecStart=/home/monitor/scripts/loadnet.sh
+ExecReload=/home/monitor/scripts/loadnet.sh --restart
+
+[Install]
+WantedBy=multi-user.target

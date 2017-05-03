@@ -1,0 +1,15 @@
+[Unit]
+Description=DiskfreeDaemon
+
+[Service]
+Type=forking
+PIDFile=/tmp/monitor/diskfree.pid
+
+User=monitor
+Group=monitor
+
+ExecStart=/home/monitor/scripts/diskfree.sh
+ExecReload=/home/monitor/scripts/diskfree.sh --restart
+
+[Install]
+WantedBy=multi-user.target

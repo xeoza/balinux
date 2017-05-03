@@ -1,0 +1,15 @@
+[Unit]
+Description=ToptalkersDaemon
+
+[Service]
+Type=forking
+PIDFile=/tmp/monitor/top-talkers.pid
+
+User=monitor
+Group=monitor
+
+ExecStart=/home/monitor/scripts/top-talkers.sh
+ExecReload=/home/monitor/scripts/top-talkers.sh --restart
+
+[Install]
+WantedBy=multi-user.target

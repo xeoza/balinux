@@ -1,0 +1,15 @@
+[Unit]
+Description=LoadcpuDaemon
+
+[Service]
+Type=forking
+PIDFile=/tmp/monitor/loadcpu.pid
+
+User=monitor
+Group=monitor
+
+ExecStart=/home/monitor/scripts/loadcpu.sh
+ExecReload=/home/monitor/scripts/loadcpu.sh --restart
+
+[Install]
+WantedBy=multi-user.target

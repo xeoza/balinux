@@ -1,0 +1,15 @@
+[Unit]
+Description=IostatDaemon
+
+[Service]
+Type=forking
+PIDFile=/tmp/monitor/iostat.pid
+
+User=monitor
+Group=monitor
+
+ExecStart=/home/monitor/scripts/iostat.sh
+ExecReload=/home/monitor/scripts/iostat.sh --restart
+
+[Install]
+WantedBy=multi-user.target

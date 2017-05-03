@@ -1,0 +1,3 @@
+monitor ALL = (root) NOPASSWD: /usr/sbin/tcpdump
+monitor ALL = (root) NOPASSWD: /usr/bin/timeout
+
