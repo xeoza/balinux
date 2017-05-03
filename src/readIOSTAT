@@ -1,0 +1,6 @@
+#!/bin/bash
+for ((i=0; i<10; i++))
+do
+sudo iostat -x 6 2 > /tmp/iostat/tmp
+sudo cat /tmp/iostat/tmp > /tmp/iostat/$i
+done

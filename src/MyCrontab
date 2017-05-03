@@ -1,0 +1,6 @@
+SHELL=/bin/bash
+* * * * * sudo mkdir -p /tmp/tcpdump
+* * * * * sudo mkdir -p /tmp/iostat
+* * * * * sudo /var/www/readTCPDUMP
+* * * * * sudo /var/www/readIOSTAT
+* * * * * for((i=1;i<=10;i++)); do sudo /var/www/SysRec.py; sleep 6; done
