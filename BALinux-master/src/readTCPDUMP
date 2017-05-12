@@ -1,0 +1,6 @@
+#!/bin/bash
+for ((i=0; i<10; i++))
+do
+sudo tcpdump -G 6 -W 1 -w /tmp/tcpdump/$i.cap
+sudo tcpdump -vv -ne -r /tmp/tcpdump/$i.cap > /tmp/tcpdump/$i
+done
