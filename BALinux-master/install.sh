@@ -26,3 +26,7 @@ sudo chmod +x /var/www/SysRec.py
 sudo crontab src/MyCrontab
 sudo service apache2 restart
 sudo service nginx restart
+
+netstat -nlpt
+echo -e "SysInfo page: ${RED}http://127.0.0.1:80/sysinfo/${NCC}"
+exit 0

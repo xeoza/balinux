@@ -7,7 +7,11 @@ import subprocess as sp
 import re
 
 path = "/tmp/history/"
-
+#_________________________________
+#Added system information for centre page
+#files = open('/var/www/index.html','w')
+#s=
+#_________________________________
 try:
     main = open('/tmp/history/main.txt', 'r')
     for i in main:
@@ -363,9 +367,28 @@ s = '''<!DOCTYPE html>
 <html>
 <head>
 <meta charset='utf-8'>
-<title></title>
+<title>Sysinfo</title>
+<meta HTTP-EQUIV="REFRESH" CONTENT="<?php echo $updateTime;?>">
 </head>
-<body>
+<body style="background-color: black; color: white; font-family: monospace;">
+<center><h1>Collected system information by <?php echo date('H:i:s d.m.Y')?></h1></center>
+<?php
+$hdr = getallheaders();
+$proxys = $hdr['X-NGX-VERSION'];
+$hostnm = explode(' ', $_SERVER['SERVER_SOFTWARE']);
+$server = $_SERVER['SERVER_ADDR'].":".$hdr['X-Apache-Port']." (".$hostnm[0].")";
+$client = $hdr['X-Real-IP'].":".$hdr['X-Real-Port'];
+$redirc = $_SERVER['REMOTE_ADDR'].":".$_SERVER['REMOTE_PORT'];
+echo "<div align=\"right\">";
+echo "<table style=\"color: aqua; font-weight: bold; margin-right: 20px;\">";
+echo "<tr><td> nginx:</td><td>".$proxys."</td></tr>";
+echo "<tr><td>apache:</td><td>".$server."</td></tr>";
+echo "<tr><td>client (nginx side):</td><td>".$client."</td></tr>";
+echo "<tr><td>client (apache side):</td><td>".$redirc."</td></tr>";
+echo "</table></div>";
+?>
+<br>
+
 <p>LoadAVG</p>
 <table>
 <tr><td>
@@ -387,7 +410,7 @@ s+= '''</table>'''
 
 s += '''<p>Net</p><table>'''
 s += '''<tr><td>nameOfInterface</td><td>Recieved bytes</td><td>Recieved packets</td><td>Recieved errs</td><td>Recieved drop</td><td>Recieved fifo</td><td>Recieved frame</td><td>Recieved compressed</td><td>Recieved multicast</td><td>Transmitted bytes</td><td>Transmitted packets</td><td>Transmitted errs</td><td>Transmitted drop</td><td>Transmitted fifo</td><td>Transmitted colls</td><td>Transmitted carrier</td><td>Transmitted compressed</td></tr>'''
-for i in range(len(net)):
+'''for i in range(len(net)):
     s += '''<tr>'''
     for j in range(len(net[i])):
         s+='''<td>{}</td>'''.format(net[i][j])
@@ -406,7 +429,7 @@ s+='''  <table>
         <tr><td>LAST_ACK: </td><td>{}</td><tr>
         <tr><td>FIN_WAIT_2: </td><td>{}</td><td>
         <tr><td>TIME_WAIT: </td><td>{}</td><tr></table>'''.format(closed,listen,syn_sent,syn_received,established,close_wait,fin_wait_1,closing,last_ack,fin_wait_2,time_wait)
-
+'''
 
 s += '''<p>NetStat</p><table>'''
 s += '''<tr><td>Proto</td><td>Recv-Q</td><td>Send-Q</td><td>Local Address</td><td>Foreign Address </td><td>Stat</td></tr>'''
